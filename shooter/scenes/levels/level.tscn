@@ -1,22 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2veiuaftnm5o"]
+[gd_scene load_steps=5 format=3 uid="uid://b2veiuaftnm5o"]
 
 [ext_resource type="Script" uid="uid://5ox8sv3dyxxr" path="res://scenes/levels/level.gd" id="1_xb4v1"]
+[ext_resource type="Texture2D" uid="uid://cg7w18qdxbnqh" path="res://graphics/objects/gate.png" id="2_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://cnwtvyabtktc6" path="res://scenes/player/player.tscn" id="3_b2cq8"]
-[ext_resource type="PackedScene" uid="uid://csidiehhysxdm" path="res://scenes/objects/billboard.tscn" id="4_urvlt"]
-[ext_resource type="PackedScene" uid="uid://c6kkkvgwoxmbc" path="res://scenes/objects/bed.tscn" id="4_xb4v1"]
-[ext_resource type="PackedScene" uid="uid://c4s5rminy14y2" path="res://scenes/enemies/drone.tscn" id="5_urvlt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2cq8"]
+size = Vector2(854.5, 161)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_xb4v1")
 
-[node name="Bed" parent="." instance=ExtResource("4_xb4v1")]
-position = Vector2(1253, 37)
+[node name="Gate" type="StaticBody2D" parent="."]
+position = Vector2(499, -541)
 
-[node name="Billboard" parent="." instance=ExtResource("4_urvlt")]
-position = Vector2(1570, 727)
+[node name="Gate" type="Sprite2D" parent="Gate"]
+texture = ExtResource("2_b2cq8")
 
-[node name="Drone" parent="." instance=ExtResource("5_urvlt")]
-position = Vector2(228, 370)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gate"]
+polygon = PackedVector2Array(-1436, -779, -1434, 544, -1419, 615, -1386, 679, -1331, 730, -1268, 761, -1208, 778, -369, 778, -367, 539, 490, 540, 494, 773, 1330, 776, 1445, 735, 1521, 655, 1560, 541, 1561, -776)
+
+[node name="Area2D" type="Area2D" parent="Gate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate/Area2D"]
+position = Vector2(61.75, 624.5)
+shape = SubResource("RectangleShape2D_b2cq8")
 
 [node name="Player" parent="." instance=ExtResource("3_b2cq8")]
-position = Vector2(798, 392)
+position = Vector2(564, 298)
+
+[connection signal="body_entered" from="Gate/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Gate/Area2D" to="." method="_on_area_2d_body_exited"]
