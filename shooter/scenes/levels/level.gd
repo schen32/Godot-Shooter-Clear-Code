@@ -9,9 +9,14 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("body entered")
+func _on_gate_player_entered_gate(body) -> void:
+	print("player has entered gate")
+	print(body)
 
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	print("body exited")
+func _on_player_player_shoot_laser() -> void:
+	print("shoot laser")
+
+
+func _on_player_player_shoot_grenade() -> void:
+	print("shoot grenade")
