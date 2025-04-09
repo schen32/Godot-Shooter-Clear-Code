@@ -10,18 +10,18 @@ radius = 51.788
 script = ExtResource("1_dovo2")
 
 [node name="PlayerImage" type="Sprite2D" parent="."]
-rotation = 1.5708
 texture = ExtResource("1_3vyb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-39, 0)
+position = Vector2(-3, 40)
 shape = SubResource("CircleShape2D_dovo2")
 
 [node name="LaserTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 
 [node name="GrenadeTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="LaserStartPos" type="Node2D" parent="."]

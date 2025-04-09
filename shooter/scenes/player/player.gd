@@ -7,8 +7,8 @@ var can_grenade: bool =  true
 @onready var grenade_timer: Timer = $GrenadeTimer
 @onready var laser_start_pos: Node2D = $LaserStartPos
 
-signal laser(pos)
-signal grenade(pos)
+signal laser(pos, direction)
+signal grenade(pos, direction)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,19 +21,20 @@ func _process(_delta: float) -> void:
 	velocity = direction * SPEED
 	move_and_slide()
 	
+	# rotate
+	look_at(get_global_mouse_position())
+	var player_direction = (get_global_mouse_position() - position).normalized()
 	if Input.is_action_pressed("primary action") and can_laser:
 		var laser_markers = laser_start_pos.get_children()
-		var selected_laser = laser_markers[randi() % len(laser_markers)]
+		var pos = laser_markers[randi() % len(laser_markers)].global_position
 		
-		laser.emit(selected_laser.global_position)
+		laser.emit(pos, player_direction)
 		can_laser = false
 		laser_timer.start()
 		
 	if Input.is_action_pressed("secondary action") and can_grenade:
-		var laser_markers = laser_start_pos.get_children()
-		var selected_laser = laser_markers[randi() % len(laser_markers)]
-		
-		grenade.emit(selected_laser.global_position)
+		var pos = laser_start_pos.get_children()[0].global_position
+		grenade.emit(pos, player_direction)
 		can_grenade = false
 		grenade_timer.start()
 
