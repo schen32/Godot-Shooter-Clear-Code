@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2veiuaftnm5o"]
+[gd_scene load_steps=12 format=3 uid="uid://b2veiuaftnm5o"]
 
 [ext_resource type="Script" uid="uid://5ox8sv3dyxxr" path="res://scenes/levels/level.gd" id="1_xb4v1"]
 [ext_resource type="Texture2D" uid="uid://p84wfdonllnd" path="res://graphics/ground/stones.png" id="2_d4w6o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bp3ur3wfbsvm6" path="res://graphics/tilesets/outside_walls.png" id="4_xb4v1"]
 [ext_resource type="Texture2D" uid="uid://cpsewvt68us25" path="res://graphics/decals/moss/moss_2.png" id="5_mbbpy"]
 [ext_resource type="Texture2D" uid="uid://bpnxtr5dayra6" path="res://graphics/tilesets/soil.png" id="5_urvlt"]
+[ext_resource type="PackedScene" uid="uid://depw6jlbetknt" path="res://scenes/houses/house.tscn" id="8_ouxo3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_urvlt"]
 resource_name = "walls"
@@ -65,6 +66,10 @@ layer_1/tile_data = PackedInt32Array(-131066, 0, 2, -196602, 0, 2, -262138, 0, 2
 position = Vector2(4313, -27)
 texture = ExtResource("5_mbbpy")
 
+[node name="House" parent="." instance=ExtResource("8_ouxo3")]
+position = Vector2(2647, 2567)
+rotation = -3.14159
+
 [node name="Gate" parent="." instance=ExtResource("3_xb4v1")]
 position = Vector2(519, -551)
 
@@ -72,7 +77,7 @@ position = Vector2(519, -551)
 position = Vector2(564, 298)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.6, 0.6)
+zoom = Vector2(0.4, 0.4)
 position_smoothing_enabled = true
 
 [node name="Projectiles" type="Node2D" parent="."]
